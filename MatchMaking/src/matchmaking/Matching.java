@@ -10,6 +10,11 @@ package matchmaking;
  * @author 341033801
  */
 public class Matching {
+
     private int mScore;
-    
+
+    public int getScore() {
+        return mScore;
+    }
+
 }
