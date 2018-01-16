@@ -36,7 +36,7 @@ public class student extends User implements Comparable <student>{
 
         //loop through answers array, check difference between each answer,
         //store total in different variable
-    
+        return 0;
     }
     
     

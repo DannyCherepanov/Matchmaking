@@ -25,6 +25,9 @@ public class Question {
     }
     
     public String toString() {
-        return; //something
+        return q; 
+    }
+    public int type(){
+        return qType;
     }
 }
