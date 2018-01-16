@@ -9,7 +9,7 @@ package usersPKG;
  *
  * @author 341033801
  */
-public class User implements Comparable{
+public class User{
     
     //private variables for user's data
     
@@ -18,10 +18,9 @@ public class User implements Comparable{
     private String pw;
 
     
-    @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+    
     
     
     
