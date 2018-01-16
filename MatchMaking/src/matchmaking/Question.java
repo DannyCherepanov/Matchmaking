@@ -23,4 +23,8 @@ public class Question {
         q = s;
         qType = type;
     }
+    
+    public String toString() {
+        return; //something
+    }
 }
