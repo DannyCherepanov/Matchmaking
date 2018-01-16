@@ -25,6 +25,6 @@ public class Question {
     }
     
     public String toString() {
-        return; //something
+        return null; //something
     }
 }
