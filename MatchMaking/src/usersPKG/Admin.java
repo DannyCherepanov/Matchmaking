@@ -7,9 +7,10 @@ package usersPKG;
 
 /**
  *
- * @author 341033801
+ * @author duncan.chaytor
  */
 public class Admin extends User {
-    
+    //admin permissions are givin if true
+    public boolean isAdmin = true;
     
 }
