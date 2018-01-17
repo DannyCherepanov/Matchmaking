@@ -13,9 +13,11 @@ public class Question {
 
     private String q;
     private int qType;
+
     /**
-     * takes in what question is asking and 
-     * if question is yes/no or scale of agree/disagree
+     * takes in what question is asking and if question is yes/no or scale of
+     * agree/disagree
+     *
      * @param s is the question
      * @param type 0 = yes/no 1 = agree/disagree
      */
@@ -23,8 +25,14 @@ public class Question {
         q = s;
         qType = type;
     }
-    
+
     public String toString() {
-        return; //something
+
+        return q;
+    }
+
+    public int type() {
+        return qType;
+
     }
 }

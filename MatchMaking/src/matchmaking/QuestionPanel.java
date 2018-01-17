@@ -5,21 +5,34 @@
  */
 package matchmaking;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author 072698376
  */
 public class QuestionPanel extends javax.swing.JPanel {
 
+    Color pink = new Color(255, 192, 203);
+
     /**
      * Creates new form QuestionPanel
      */
     public QuestionPanel() {
         initComponents();
+
+        repaint();
     }
-    
-    public void paintComponent() {
-        
+
+    public void paintComponent(Graphics g) {
+        Image heart = new ImageIcon("heart.png").getImage();
+        g.setColor(pink);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.drawImage(heart, 10, 10, 90, 90, this);
     }
 
     /**
@@ -30,6 +43,8 @@ public class QuestionPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
