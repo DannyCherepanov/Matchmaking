@@ -36,7 +36,7 @@ public class student extends User implements Comparable <student>{
     
     //stores integers representing answers to questions
     //values between 1 and 5, 1 being strongly disagree, 5 being strongly agree
-    private ArrayList <Integer> answer;
+    private ArrayList <Integer> answer = new ArrayList();
     
     /**
      * Gets a student's gender
@@ -63,8 +63,6 @@ public class student extends User implements Comparable <student>{
     public void setAnswer(int ansAT, int ans)    {
         //THIS MIGHT NOT WORK, might have to switch answer to an arraylist
         answer.add(ansAT - 1, (Integer)ans);
-        
-       
     }
     
     

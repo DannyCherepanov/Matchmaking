@@ -16,7 +16,9 @@ public class testUsers {
         student s1 = new student("d", "d", 1);
         student s2 = new student("d","d", 1);
         s1.setAnswer(1,1);
+        s1.setAnswer(2,5);
         s2.setAnswer(1,1);
+        s2.setAnswer(2,3);
         System.out.println(s1.compareTo(s2));
     }
 
