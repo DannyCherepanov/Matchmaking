@@ -15,20 +15,33 @@ import matchmaking.Questionnaire;
  */
 public class student extends User implements Comparable <student>{
     
+    /*
+    If wanting to enter un/pw for students but want to leave it to them to enter gender or orientation,
+    create new students with values for gender and/or ori as 0, and un/pw as school credentials.
+    */
     
     
-    public student(String un, String pw, int gender)    {
+    /**
+     * Creates new student when ALL information is entered (For when getting student info out of database)
+     * @param un the username of a student
+     * @param pw the password of a student
+     * @param gender the student's gender (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
+     * @param ori the student's orientation (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
+     */
+    public student(String un, String pw, int gender, int ori)    {
         setUn(un);
         setPw(pw);
         this.gender = gender;
-        
+        this.ori = ori;
     }
     
     
     
     
-    //for determining matches, 0 for unspecified/other, 1 for male, 2 for female
+    //for determining matches, 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
     private int gender;
+    //for determining matches, 0 for not entered yet, 1 for straight, 2 for bi, 3 for gay
+    private int ori;
     
     //true if looking for match, false if just looking for friend
     private boolean romantic;
@@ -39,11 +52,19 @@ public class student extends User implements Comparable <student>{
     private ArrayList <Integer> answer = new ArrayList();
     
     /**
-     * Gets a student's gender
-     * @return 0 for unspecified/other, 1 for male, 2 for female
+     * Gets a student's entered gender
+     * @return 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
      */
     public int getGender()  {
         return this.gender;
+    }
+    
+    /**
+     * Gets a student's entered orientation
+     * @return 
+     */
+    public int getOri() {
+        return this.ori;
     }
     
     /**
