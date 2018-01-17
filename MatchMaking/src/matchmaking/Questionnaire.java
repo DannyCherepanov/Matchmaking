@@ -17,11 +17,12 @@ import java.util.logging.Logger;
  * @author 341033801
  */
 public class Questionnaire {
-    //PUT HOW MANY QUESTIONS THERE ARE HERE
-    public static int amtQ;
-   
-    //switch to array of questions
 
+    //PUT HOW MANY QUESTIONS THERE ARE HERE
+
+    public static int amtQ;
+
+    //switch to array of questions
     Question[] matchTest = new Question[20];
     private File file;
 
@@ -39,9 +40,8 @@ public class Questionnaire {
         int count = 0;
         while (s.hasNextLine()) {
             String g = s.nextLine();
-            String[] h = g.split("|");
-            matchTest[count].setQ(h[0]);
-            matchTest[count].setqType(parseInt(h[1]));
+            String[] h = g.split(",");
+            matchTest[count] = new Question(h[0], parseInt(h[1]));
             count++;
         }
         s.close();

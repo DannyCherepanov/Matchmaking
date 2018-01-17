@@ -16,6 +16,9 @@ import java.io.*;
 public class QuestionScreen extends javax.swing.JFrame {
 
     Color pink = new Color(255, 192, 203);
+    int globalCount = 0;
+    static File file = new File("questionarre.txt");
+    static Questionnaire q1 = new Questionnaire(file);
     //  Container c = QuestionScreen.getContentPane();
 
     /**
@@ -160,11 +163,13 @@ public class QuestionScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
-        currentQ.setText(null);
+        globalCount++;
+        currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
-        currentQ.setText(null);
+        globalCount--;
+        currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
 
     /**
@@ -172,12 +177,7 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-        File file = new File("questionarre.txt");
-        Questionnaire q1 = new Questionnaire(file);
-        
         q1.readQuestionaire();
-        
-        
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
