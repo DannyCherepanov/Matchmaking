@@ -7,6 +7,7 @@ package matchmaking;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.io.*;
 
 /**
  *
@@ -15,6 +16,9 @@ import java.awt.Container;
 public class QuestionScreen extends javax.swing.JFrame {
 
     Color pink = new Color(255, 192, 203);
+    int globalCount = 0;
+    static File file = new File("questionarre.txt");
+    static Questionnaire q1 = new Questionnaire(file);
     //  Container c = QuestionScreen.getContentPane();
 
     /**
@@ -36,7 +40,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         questionPanel1 = new matchmaking.QuestionPanel();
-        jLabel1 = new javax.swing.JLabel();
+        currentQ = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nextQ = new javax.swing.JButton();
         prevQ = new javax.swing.JButton();
@@ -51,8 +55,8 @@ public class QuestionScreen extends javax.swing.JFrame {
 
         questionPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        jLabel1.setText("<Question>");
+        currentQ.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        currentQ.setText("<Question>");
 
         jLabel3.setFont(new java.awt.Font("Khmer UI", 3, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
@@ -68,7 +72,7 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentQ, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
         questionPanel1Layout.setVerticalGroup(
@@ -77,13 +81,23 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentQ, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
         nextQ.setText("Next Question");
+        nextQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextQActionPerformed(evt);
+            }
+        });
 
         prevQ.setText("Previous Question");
+        prevQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevQActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -148,11 +162,22 @@ public class QuestionScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
+        globalCount++;
+        currentQ.setText(q1.matchTest[globalCount].getQ());
+    }//GEN-LAST:event_nextQActionPerformed
+
+    private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
+        globalCount--;
+        currentQ.setText(q1.matchTest[globalCount].getQ());
+    }//GEN-LAST:event_prevQActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
+        q1.readQuestionaire();
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -187,7 +212,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel currentQ;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
