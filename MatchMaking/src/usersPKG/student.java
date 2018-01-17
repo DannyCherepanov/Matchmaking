@@ -88,6 +88,12 @@ public class student extends User implements Comparable <student>{
     
     
 
+    /**
+     * Gets the total difference between two students. Finds the difference in 
+     * answers for each question, adds them all together, and returns that
+     * @param o the second student being compared
+     * @return the total difference in answers between students (sum of differences for each question)
+     */
     @Override
     public int compareTo(student o) {
         //loop through answers array, check difference between each answer,

@@ -14,7 +14,7 @@ public class User{
     //private variables for user's data
     
     private String un;
-    //takes in encrypted password (ENCRYPTION DONE ELSEWHERE)
+    //takes in encrypted password (ENCRYPTION DONE WHEN PASSWORD ENTERED)
     private String pw;
 
     public String getUn()   {
@@ -22,6 +22,17 @@ public class User{
     }
     public String getPw()   {
         return this.pw;
+    }
+    
+    protected void encryptPW()  {
+        //encrypt a password
+        
+        
+        
+        
+        
+        
+        
     }
     
     
@@ -32,6 +43,8 @@ public class User{
     }
     public void setPw(String pw)    {
         this.pw = pw;
+        //encrypt the new password
+        encryptPW();
     }
 
     
