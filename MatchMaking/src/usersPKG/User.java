@@ -7,7 +7,7 @@ package usersPKG;
 
 /**
  *
- * @author 341033801
+ * @author duncan.chaytor
  */
 public class User{
     
@@ -17,8 +17,22 @@ public class User{
     //takes in encrypted password (ENCRYPTION DONE ELSEWHERE)
     private String pw;
 
+    public String getUn()   {
+        return this.un;
+    }
+    public String getPw()   {
+        return this.pw;
+    }
     
     
+    
+    //MIGHT CHANGE THESE
+    public void setUn(String un)    {
+        this.un = un;
+    }
+    public void setPw(String pw)    {
+        this.pw = pw;
+    }
 
     
     

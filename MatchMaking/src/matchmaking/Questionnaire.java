@@ -17,6 +17,10 @@ import java.util.logging.Logger;
  * @author 341033801
  */
 public class Questionnaire {
+    //PUT HOW MANY QUESTIONS THERE ARE HERE
+    public static int amtQ;
+   
+    //switch to array of questions
 
     Question[] matchTest = new Question[20];
     private File file;
