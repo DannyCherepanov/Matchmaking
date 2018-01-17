@@ -28,11 +28,39 @@ public class Question {
 
     public String toString() {
 
-        return q;
+        return getQ();
     }
 
     public int type() {
-        return qType;
+        return getqType();
 
+    }
+
+    /**
+     * @return the q
+     */
+    public String getQ() {
+        return q;
+    }
+
+    /**
+     * @param q the q to set
+     */
+    public void setQ(String q) {
+        this.q = q;
+    }
+
+    /**
+     * @return the qType
+     */
+    public int getqType() {
+        return qType;
+    }
+
+    /**
+     * @param qType the qType to set
+     */
+    public void setqType(int qType) {
+        this.qType = qType;
     }
 }
