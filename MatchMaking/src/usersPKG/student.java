@@ -15,23 +15,36 @@ import matchmaking.Questionnaire;
  */
 public class student extends User implements Comparable <student>{
     
+    /*
+    If wanting to enter un/pw for students but want to leave it to them to enter gender or orientation,
+    create new students with values for gender and/or ori as 0, and un/pw as school credentials.
+    */
     
     
-    public student(String un, String pw, int gender)    {
+    /**
+     * Creates new student when ALL information is entered (For when getting student info out of database)
+     * @param un the username of a student
+     * @param pw the password of a student
+     * @param gender the student's gender (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
+     * @param ori the student's orientation (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
+     */
+    public student(String un, String pw, int gender, int ori)    {
         setUn(un);
         setPw(pw);
         this.gender = gender;
-        
+        this.ori = ori;
     }
     
     
     
     
-    //for determining matches, 0 for unspecified/other, 1 for male, 2 for female
+    //for determining matches, 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
     private int gender;
+    //for determining matches, 0 for not entered yet, 1 for likes men, 2 for likes women, 4 for either, 3 for literally anyone 
+    private int ori;
     
     //true if looking for match, false if just looking for friend
-    private boolean romantic;
+    //private boolean romantic;
     
     
     //stores integers representing answers to questions
@@ -39,11 +52,20 @@ public class student extends User implements Comparable <student>{
     private ArrayList <Integer> answer = new ArrayList();
     
     /**
-     * Gets a student's gender
-     * @return 0 for unspecified/other, 1 for male, 2 for female
+     * Gets a student's entered gender
+     * @return 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
      */
     public int getGender()  {
         return this.gender;
+    }
+    
+    /**
+     * Gets a student's entered orientation
+     * @return 0 for not yet entered, 1 for interested in males, 2 for interested in females,
+     * 4 for interested in males OR females, 3 for anyone
+     */
+    public int getOri() {
+        return this.ori;
     }
     
     /**
@@ -67,8 +89,40 @@ public class student extends User implements Comparable <student>{
     
     
 
+    /**
+     * Gets the total difference between two students. Finds the difference in 
+     * answers for each question, adds them all together, and returns that
+     * @param o the second student being compared
+     * @return the total difference in answers between students (sum of differences for each question). Returns negative if gender/orientations of students don't match
+     */
     @Override
     public int compareTo(student o) {
+        //cover case if trying to match students w/out specified gender/orientation variables
+        if (this.gender == 0 || this.ori == 0 || o.ori == 0 || o.gender ==0)    {
+            System.out.println("One or more students haven't specified gender/orientation.");
+            return - 1;
+        }
+        
+        
+        //temporary orientation variables, for ease of handling cases where orientation variable doesn't always = other persons gender
+        int tempORI1 = this.ori;
+        int tempORI2 = o.ori;
+        
+        //if person 1 looking to match with anyone, set tempORI1 to the other persons gender
+        if (tempORI1 == 3) tempORI1 = o.gender;
+        //if person 2 looking to match with anyone, set tempORI2 to the other persons gender
+        if (tempORI2 == 3) tempORI2 = this.gender;
+        
+        //handle cases if 'bi' option chosen
+        if (tempORI1 == 4 && o.gender != 3) tempORI1 = o.gender;
+        if (tempORI2 == 4 && o.gender != 3) tempORI2 = this.gender;
+        
+        //if gender/orientation don't line up, return a negative number
+        if (this.gender != tempORI2 ||  tempORI1 != o.gender) {
+        return - 1;
+    }
+        
+        
         //loop through answers array, check difference between each answer,
         //store total in different variable
         int totDiff = 0;

@@ -13,4 +13,9 @@ public class Admin extends User {
     //admin permissions are givin if true
     public boolean isAdmin = true;
     
+    public Admin(String un, String pw)  {
+        setUn(un);
+        setPw(pw);
+    }
+    
 }
