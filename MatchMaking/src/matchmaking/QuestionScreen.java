@@ -8,6 +8,7 @@ package matchmaking;
 import java.awt.Color;
 import java.awt.Container;
 import java.io.*;
+import usersPKG.student;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.io.*;
  */
 public class QuestionScreen extends javax.swing.JFrame {
 
+    student test = new student("student", "debt", 1, 1);
     Color pink = new Color(255, 192, 203);
     int globalCount = 0;
     static File file = new File("questionarre.txt");
@@ -164,11 +166,33 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
         globalCount++;
+        if (jRadioButton1.isSelected()) {
+            test.setAnswer(globalCount, 1);
+        } else if (jRadioButton2.isSelected()) {
+            test.setAnswer(globalCount, 2);
+        } else if (jRadioButton3.isSelected()) {
+            test.setAnswer(globalCount, 3);
+        } else if (jRadioButton4.isSelected()) {
+            test.setAnswer(globalCount, 4);
+        } else if (jRadioButton5.isSelected()) {
+            test.setAnswer(globalCount, 5);
+        }
         currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
-        globalCount--;
+         globalCount--;
+        if (jRadioButton1.isSelected()) {
+            test.setAnswer(globalCount + 1, 1);
+        } else if (jRadioButton2.isSelected()) {
+            test.setAnswer(globalCount + 1, 2);
+        } else if (jRadioButton3.isSelected()) {
+            test.setAnswer(globalCount + 1, 3);
+        } else if (jRadioButton4.isSelected()) {
+            test.setAnswer(globalCount + 1, 4);
+        } else if (jRadioButton5.isSelected()) {
+            test.setAnswer(globalCount + 1, 5);
+        }
         currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
 
