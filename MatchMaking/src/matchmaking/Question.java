@@ -10,8 +10,9 @@ package matchmaking;
  * @author 341033801
  */
 public class Question {
-
+    //is actual question
     private String q;
+    //the question type
     private int qType;
 
     /**
