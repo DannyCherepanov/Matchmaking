@@ -21,7 +21,11 @@ public class log {
     public static final File bp = new File("dictbadpass.txt");;
     ArrayList a = new ArrayList<String[]>();
     public static final String d = ",";
-
+    /**
+     * starts a file under given directory for easy login/logout system
+     * @param x location of file
+     * @throws FileNotFoundException 
+     */
     public log(String x) throws FileNotFoundException {
         f = new File(x);
         Scanner s = new Scanner(f);
@@ -29,7 +33,14 @@ public class log {
             a.add(s.nextLine().split(d));
         }
     }
-
+    /**
+     * registers a user in file as long as they don't have a bad password 
+     * @param fName first name
+     * @param lName last name
+     * @param user user name
+     * @param password password
+     * @throws FileNotFoundException 
+     */
     public void reg(String fName, String lName, String user, String password) throws FileNotFoundException {
         if(badpassword(password)){
             return;
@@ -41,7 +52,13 @@ public class log {
         a.add(temp.split(d));
         pw.close();
     }
-
+    /**
+     * 
+     * @param user username trying to log in
+     * @param password password that is supposed to go with user name
+     * @return returns true if the person is in the system
+     * @throws FileNotFoundException 
+     */
     public boolean login(String user, String password) throws FileNotFoundException {
         for (int g = 0; g <= a.size(); g++) {
             if ((((String[]) a.get(g))[2].equals(user)) && (((String[]) a.get(g))[3].equals(password))) {
