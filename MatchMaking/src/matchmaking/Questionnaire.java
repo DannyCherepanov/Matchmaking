@@ -18,11 +18,7 @@ import java.util.logging.Logger;
  */
 public class Questionnaire {
 
-    //PUT HOW MANY QUESTIONS THERE ARE HERE
-    public static int amtQ;
-
-    //switch to array of questions
-    Question[] matchTest = new Question[20];
+    public Question[] matchTest = new Question[20];
     private File file;
     private File file2;
 
@@ -78,6 +74,7 @@ public class Questionnaire {
     public void setFile(File file) {
         this.file = file;
     }
+    
 
     /**
      * @return the file2

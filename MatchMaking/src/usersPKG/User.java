@@ -5,6 +5,11 @@
  */
 package usersPKG;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author duncan.chaytor
@@ -24,27 +29,44 @@ public class User{
         return this.pw;
     }
     
-    protected void encryptPW()  {
+    //password encryption using md5 (since I don't know any other ways)
+    //MIGHT BE MOVED TO LOGIN METHOD
+    protected String encryptPW(String passw)  {
         //encrypt a password
         
         
+        MessageDigest md;
+        //initialize string to store encrypted password
+        String password = "";
+        try {
+            md = MessageDigest.getInstance("MD5");
+            //give the helper function the password
+            md.update(passw.getBytes());
+            //perform the encryption
+            byte byteData[] = md.digest();
+            
+            
+            for (int i = 0; i < byteData.length; ++i) {
+            password += (Integer.toHexString((byteData[i] & 0xFF) | 0x100).substring(1,3));
+            
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        
-        
-        
+        return password;
         
     }
     
     
     
     //MIGHT CHANGE THESE
-    public void setUn(String un)    {
+    protected void setUn(String un)    {
         this.un = un;
     }
-    public void setPw(String pw)    {
-        this.pw = pw;
+    protected void setPw(String pw)    {
         //encrypt the new password
-        encryptPW();
+        this.pw = encryptPW(pw);
     }
 
     
