@@ -60,7 +60,6 @@ public class Questionnaire {
 //        }
 //        
 //     }
-
     /**
      * @return the file
      */
@@ -74,7 +73,6 @@ public class Questionnaire {
     public void setFile(File file) {
         this.file = file;
     }
-    
 
     /**
      * @return the file2

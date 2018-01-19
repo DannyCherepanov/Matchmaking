@@ -18,4 +18,7 @@ public class Admin extends User {
         setPw(pw);
     }
     
+    //change questionarre
+    
+    //view results for a specified user
 }

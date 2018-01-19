@@ -17,7 +17,7 @@ import usersPKG.student;
  * @author 072698376
  */
 public class QuestionScreen extends javax.swing.JFrame {
-    
+
     static student test = new student("student", "debt", 1, 1);
     Color pink = new Color(255, 192, 203);
     int globalCount = 0;
@@ -27,7 +27,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     //  Container c = QuestionScreen.getContentPane();
 
     /**
-     * Jaden is very thicc ~Louie :) Creates new form QuestionScreen
+     * Creates new form QuestionScreen
      */
     public QuestionScreen() {
         initComponents();
@@ -173,56 +173,68 @@ public class QuestionScreen extends javax.swing.JFrame {
             p = new PrintWriter(new FileWriter(file2), true);
         } catch (IOException ex) {
         }
-        
+
         globalCount++;
+        if (globalCount > q1.matchTest.length - 1) {
+            globalCount = q1.matchTest.length - 1;
+        }
         if (jRadioButton1.isSelected()) {
-            test.setAnswer(globalCount, 1);
+            if (test.getAnswer(globalCount) == 0) {
+                test.setAnswer(globalCount, 1);
+            } else {
+                test.removeAnswer(globalCount);
+                test.setAnswer(globalCount, 1);
+            }
+            System.out.print(test.getAnswer(globalCount) + ",");
             p.print(test.getAnswer(globalCount) + ",");
         } else if (jRadioButton2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
-            test.setAnswer(globalCount, 2);
-            p.print(test.getAnswer(globalCount));
+            if (test.getAnswer(globalCount) == 0) {
+                test.setAnswer(globalCount, 2);
+            } else {
+                test.removeAnswer(globalCount);
+                test.setAnswer(globalCount, 2);
+            }
+            System.out.print(test.getAnswer(globalCount) + ",");
+            p.print(test.getAnswer(globalCount) + ",");
         } else if (jRadioButton3.isSelected()) {
-            test.setAnswer(globalCount, 3);
-            p.print(test.getAnswer(globalCount));
+            if (test.getAnswer(globalCount) == 0) {
+                test.setAnswer(globalCount, 3);
+            } else {
+                test.removeAnswer(globalCount);
+                test.setAnswer(globalCount, 3);
+            }
+            System.out.print(test.getAnswer(globalCount) + ",");
+            p.print(test.getAnswer(globalCount) + ",");
         } else if (jRadioButton4.isSelected()) {
-            test.setAnswer(globalCount, 4);
-            p.print(test.getAnswer(globalCount));
+            if (test.getAnswer(globalCount) == 0) {
+                test.setAnswer(globalCount, 4);
+            } else {
+                test.removeAnswer(globalCount);
+                test.setAnswer(globalCount, 4);
+            }
+            System.out.print(test.getAnswer(globalCount) + ",");
+            p.print(test.getAnswer(globalCount) + ",");
         } else if (jRadioButton5.isSelected()) {
-            test.setAnswer(globalCount, 5);
-            p.print(test.getAnswer(globalCount));
+            if (test.getAnswer(globalCount) == 0) {
+                test.setAnswer(globalCount, 5);
+            } else {
+                test.removeAnswer(globalCount);
+                test.setAnswer(globalCount, 5);
+            }
+            System.out.print(test.getAnswer(globalCount) + ",");
+            p.print(test.getAnswer(globalCount) + ",");
         }
         p.close();
         currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
-        PrintWriter p = null;
-        try {
-            p = new PrintWriter(new FileWriter(file2), true);
-        } catch (IOException ex) {
-        }
-        
         globalCount--;
-        if (jRadioButton1.isSelected()) {
-            test.setAnswer(globalCount, 1);
-            p.print(test.getAnswer(globalCount));
-        } else if (jRadioButton2.isSelected()) {
-            test.setAnswer(globalCount, 2);
-            p.print(test.getAnswer(globalCount));
-        } else if (jRadioButton3.isSelected()) {
-            test.setAnswer(globalCount, 3);
-            p.print(test.getAnswer(globalCount));
-        } else if (jRadioButton4.isSelected()) {
-            test.setAnswer(globalCount, 4);
-            p.print(test.getAnswer(globalCount));
-        } else if (jRadioButton5.isSelected()) {
-            test.setAnswer(globalCount, 5);
-            p.print(test.getAnswer(globalCount));
+        if (globalCount > 0) {
+            globalCount = 0;
         }
-        p.close();
         currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
-
     /**
      * @param args the command line arguments
      */
