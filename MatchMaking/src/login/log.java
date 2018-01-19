@@ -5,12 +5,9 @@
  */
 package login;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.io.*;
+import java.util.*;
+import usersPKG.*;
 /**
  *
  * @author Danny
@@ -18,8 +15,8 @@ import java.util.Scanner;
 public class log {
 
     private File f;
-    public static final File bp = new File("dictbadpass.txt");;
-    ArrayList a = new ArrayList<String[]>();
+    
+    ArrayList a = new ArrayList<student>();
     public static final String d = ",";
     /**
      * starts a file under given directory for easy login/logout system
@@ -30,7 +27,7 @@ public class log {
         f = new File(x);
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
-            a.add(s.nextLine().split(d));
+            a.add(new student(s.next(),s.next(),s.nextInt(),s.nextInt()));
         }
     }
     /**
@@ -41,15 +38,10 @@ public class log {
      * @param password password
      * @throws FileNotFoundException 
      */
-    public void reg(String fName, String lName, String user, String password) throws FileNotFoundException {
-        if(badpassword(password)){
-            return;
-        }
+    public void reg( String user, String password, int gender, int ori) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(f);
-        Scanner s = new Scanner(f);
-        String temp = fName + d + lName + d + user + d + password + ",/n";
-        pw.append(temp);
-        a.add(temp.split(d));
+        a.add(new student(user ,password,gender,ori));
+        pw.append(user + d + password + d + gender + d + ori);
         pw.close();
     }
     /**
@@ -61,7 +53,7 @@ public class log {
      */
     public boolean login(String user, String password) throws FileNotFoundException {
         for (int g = 0; g <= a.size(); g++) {
-            if ((((String[]) a.get(g))[2].equals(user)) && (((String[]) a.get(g))[3].equals(password))) {
+            if ( ((student)a.get(g)).getUn().equals(user) && ((student)a.get(g)).getPw().equals(password)) {
                 return true;
             }
         }
@@ -69,13 +61,5 @@ public class log {
     }
     
     
-    private boolean badpassword(String pass) throws FileNotFoundException{
-        Scanner u = new Scanner(bp);
-        while(u.hasNext()){
-            if(u.nextLine()==pass){
-                return true;
-            }
-        }
-        return false;
-    }
+    
 }
