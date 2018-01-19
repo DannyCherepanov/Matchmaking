@@ -28,14 +28,12 @@ public class student extends User implements Comparable <student>{
      * @param gender the student's gender (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
      * @param ori the student's orientation (entered themselves on first login) (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
      */
-    public student(String un, String pw, int gender, int ori, ArrayList answer)    {
+    public student(String un, String pw, int gender, int ori)    {
         setUn(un);
         setPw(pw);
         this.gender = gender;
         this.ori = ori;
-        
-        this.answer = new ArrayList(answer);
-    }
+        }
     
     
     
