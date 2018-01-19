@@ -29,13 +29,13 @@ public class student extends User implements Comparable<student> {
      * @param ori the student's orientation (entered themselves on first login)
      * (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
      */
-    public student(String un, String pw, int gender, int ori, ArrayList answer)    {
+    public student(String un, String pw, int gender, int ori)    {
         setUn(un);
         setPw(pw);
         this.gender = gender;
         this.ori = ori;
         
-        this.answer = new ArrayList(answer);
+//        this.answer = new ArrayList(answer);
     }
 
     //for determining matches, 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
@@ -78,7 +78,7 @@ public class student extends User implements Comparable<student> {
      * 1 corresponds with answer[0])
      */
     public int getAnswer(int ansAT) {
-        return answer.get(ansAT - 1);
+        return answer.get(ansAT-1);
     }
 
     /**

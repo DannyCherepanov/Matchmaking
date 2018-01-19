@@ -8,6 +8,7 @@ package matchmaking;
 import java.awt.Color;
 import java.awt.Container;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import usersPKG.student;
@@ -24,7 +25,6 @@ public class QuestionScreen extends javax.swing.JFrame {
     static File file = new File("questionarre.txt");
     static File file2 = new File("answers.txt");
     static Questionnaire q1 = new Questionnaire(file, file2);
-    //  Container c = QuestionScreen.getContentPane();
 
     /**
      * Creates new form QuestionScreen
@@ -170,7 +170,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
         PrintWriter p = null;
         try {
-            p = new PrintWriter(new FileWriter(file2), true);
+            p = new PrintWriter(new FileWriter("answers.txt"), true);
         } catch (IOException ex) {
         }
 
@@ -179,50 +179,15 @@ public class QuestionScreen extends javax.swing.JFrame {
             globalCount = q1.matchTest.length - 1;
         }
         if (jRadioButton1.isSelected()) {
-            if (test.getAnswer(globalCount) == 0) {
-                test.setAnswer(globalCount, 1);
-            } else {
-                test.removeAnswer(globalCount);
-                test.setAnswer(globalCount, 1);
-            }
-            System.out.print(test.getAnswer(globalCount) + ",");
-            p.print(test.getAnswer(globalCount) + ",");
+            saveAnswer(1);
         } else if (jRadioButton2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
-            if (test.getAnswer(globalCount) == 0) {
-                test.setAnswer(globalCount, 2);
-            } else {
-                test.removeAnswer(globalCount);
-                test.setAnswer(globalCount, 2);
-            }
-            System.out.print(test.getAnswer(globalCount) + ",");
-            p.print(test.getAnswer(globalCount) + ",");
+            saveAnswer(2);
         } else if (jRadioButton3.isSelected()) {
-            if (test.getAnswer(globalCount) == 0) {
-                test.setAnswer(globalCount, 3);
-            } else {
-                test.removeAnswer(globalCount);
-                test.setAnswer(globalCount, 3);
-            }
-            System.out.print(test.getAnswer(globalCount) + ",");
-            p.print(test.getAnswer(globalCount) + ",");
+            saveAnswer(3);
         } else if (jRadioButton4.isSelected()) {
-            if (test.getAnswer(globalCount) == 0) {
-                test.setAnswer(globalCount, 4);
-            } else {
-                test.removeAnswer(globalCount);
-                test.setAnswer(globalCount, 4);
-            }
-            System.out.print(test.getAnswer(globalCount) + ",");
-            p.print(test.getAnswer(globalCount) + ",");
+            saveAnswer(4);
         } else if (jRadioButton5.isSelected()) {
-            if (test.getAnswer(globalCount) == 0) {
-                test.setAnswer(globalCount, 5);
-            } else {
-                test.removeAnswer(globalCount);
-                test.setAnswer(globalCount, 5);
-            }
-            System.out.print(test.getAnswer(globalCount) + ",");
-            p.print(test.getAnswer(globalCount) + ",");
+            saveAnswer(5);
         }
         p.close();
         currentQ.setText(q1.matchTest[globalCount].getQ());
@@ -235,6 +200,22 @@ public class QuestionScreen extends javax.swing.JFrame {
         }
         currentQ.setText(q1.matchTest[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
+    public void saveAnswer(int answer) {
+        PrintWriter p = null;
+        try {
+            p = new PrintWriter(new FileWriter("answers.txt"), true);
+        } catch (IOException ex) {
+        }
+
+        if (test.getAnswer(globalCount) == 0) {
+            test.setAnswer(globalCount, answer);
+        } else {
+            test.removeAnswer(globalCount);
+            test.setAnswer(globalCount, answer);
+        }
+        p.print(test.getAnswer(globalCount) + ",");
+    }
+
     /**
      * @param args the command line arguments
      */
