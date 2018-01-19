@@ -23,7 +23,7 @@ public class log {
     public static final String d = ",";
     /**
      * starts a file under given directory for easy login/logout system
-     * @param x location of file
+L     * @param x location of file
      * @throws FileNotFoundException 
      */
     public log(String x) throws FileNotFoundException {
@@ -53,7 +53,7 @@ public class log {
         pw.close();
     }
     /**
-     * 
+     * Login method works once you have set up the file
      * @param user username trying to log in
      * @param password password that is supposed to go with user name
      * @return returns true if the person is in the system

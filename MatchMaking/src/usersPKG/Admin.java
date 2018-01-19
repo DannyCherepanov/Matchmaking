@@ -18,7 +18,14 @@ public class Admin extends User {
         setPw(pw);
     }
     
-    //change questionarre
+    /**
+     * Returns String representation of an admin
+     * @return Comma delimited line with users information in format un, pw, admin status
+     */
+    @Override
+    public String toString()    {
+        String dl = ",";
+        return (this.getUn() + dl + this.getPw() + dl + isAdmin);
+    }
     
-    //view results for a specified user
 }
