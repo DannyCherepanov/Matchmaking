@@ -33,7 +33,7 @@ public class student extends User implements Comparable <student>{
         setPw(pw);
         this.gender = gender;
         this.ori = ori;
-    }
+        }
     
     
     
@@ -49,7 +49,7 @@ public class student extends User implements Comparable <student>{
     
     //stores integers representing answers to questions
     //values between 1 and 5, 1 being strongly disagree, 5 being strongly agree
-    private ArrayList <Integer> answer = new ArrayList();
+    private ArrayList <Integer> answer ;
     
     /**
      * Gets a student's entered gender
@@ -139,6 +139,13 @@ public class student extends User implements Comparable <student>{
         return totDiff;
     }
     
-    
-    
+    /**
+     * Returns String representation of a student
+     * @return Comma delimited line with users information in format un, pw, gender, orientation
+     */
+    @Override
+    public String toString()    {
+        String dl = ",";
+        return (this.getUn() + dl + this.getPw() + dl + gender + dl + ori);
+    }
 }
