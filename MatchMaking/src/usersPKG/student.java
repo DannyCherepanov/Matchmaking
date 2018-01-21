@@ -76,7 +76,7 @@ public class student extends User implements Comparable<student> {
      * 1 corresponds with answer[0])
      */
     public int getAnswer(int ansAT) {
-        return answer.get(ansAT - 1);
+        return answer.get(ansAT);
     }
 
     /**
@@ -88,11 +88,12 @@ public class student extends User implements Comparable<student> {
      */
     public void setAnswer(int ansAT, int ans) {
         //THIS MIGHT NOT WORK, might have to switch answer to an arraylist
-        answer.add(ansAT - 1, (Integer) ans);
+        //BTW Jaden changed this slightly to get it to work.
+        answer.add(ansAT, (Integer) ans);
     }
 
     public void removeAnswer(int ansAT) {
-        answer.remove(ansAT - 1);
+        answer.remove(ansAT);
     }
 
     /**
