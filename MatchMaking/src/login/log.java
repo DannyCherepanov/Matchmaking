@@ -59,6 +59,8 @@ public class log {
      * @throws FileNotFoundException
      */
     public boolean login(String user, String password) throws FileNotFoundException {
+        //send entered password to encryption method
+        password = User.encryptPW(password);
         for (int g = 0; g <= a.size(); g++) {
             if (((student) a.get(g)).getUn().equals(user) && ((student) a.get(g)).getPw().equals(password)) {
                 return true;
@@ -66,5 +68,7 @@ public class log {
         }
         return false;
     }
+    
+    
 
 }

@@ -30,8 +30,12 @@ public class User {
     }
 
     //password encryption using md5 (since I don't know any other ways)
-    //MIGHT BE MOVED TO LOGIN METHOD
-    protected String encryptPW(String passw) {
+    /**
+     * Method to encrypt an entered password
+     * @param passw the password to be encrypted
+     * @return an MD5-encrypted version of the entered password
+     */
+    public static String encryptPW(String passw) {
         //encrypt a password
 
         MessageDigest md;
