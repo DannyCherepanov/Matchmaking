@@ -29,16 +29,13 @@ public class student extends User implements Comparable<student> {
      * @param ori the student's orientation (entered themselves on first login)
      * (ENTER 0 FOR DEFAULT if you want to create users with un/pw)
      */
-    public student(String un, String pw, int gender, int ori)    {
+    public student(String un, String pw, int gender, int ori) {
         setUn(un);
         setPw(pw);
         this.gender = gender;
         this.ori = ori;
-        }
-    
-    
-    
-    
+    }
+
     //for determining matches, 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
     private int gender;
     //for determining matches, 0 for not entered yet, 1 for likes men, 2 for likes women, 4 for either, 3 for literally anyone 
@@ -48,8 +45,8 @@ public class student extends User implements Comparable<student> {
     //private boolean romantic;
     //stores integers representing answers to questions
     //values between 1 and 5, 1 being strongly disagree, 5 being strongly agree
-    private ArrayList <Integer> answer = new ArrayList();
-    
+    private ArrayList<Integer> answer = new ArrayList();
+
     /**
      * Gets a student's entered gender
      *
@@ -79,7 +76,7 @@ public class student extends User implements Comparable<student> {
      * 1 corresponds with answer[0])
      */
     public int getAnswer(int ansAT) {
-        return answer.get(ansAT-1);
+        return answer.get(ansAT);
     }
 
     /**
@@ -91,11 +88,12 @@ public class student extends User implements Comparable<student> {
      */
     public void setAnswer(int ansAT, int ans) {
         //THIS MIGHT NOT WORK, might have to switch answer to an arraylist
-        answer.add(ansAT - 1, (Integer) ans);
+        //BTW Jaden changed this slightly to get it to work.
+        answer.add(ansAT, (Integer) ans);
     }
 
     public void removeAnswer(int ansAT) {
-        answer.remove(ansAT - 1);
+        answer.remove(ansAT);
     }
 
     /**
@@ -156,13 +154,15 @@ public class student extends User implements Comparable<student> {
 
         return totDiff;
     }
-    
+
     /**
      * Returns String representation of a student
-     * @return Comma delimited line with users information in format un, pw, gender, orientation
+     *
+     * @return Comma delimited line with users information in format un, pw,
+     * gender, orientation
      */
     @Override
-    public String toString()    {
+    public String toString() {
         String dl = ",";
         return (this.getUn() + dl + this.getPw() + dl + gender + dl + ori);
     }

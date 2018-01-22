@@ -18,16 +18,17 @@ import java.util.logging.Logger;
  */
 public class Questionnaire {
 
-    public Question[] matchTest = new Question[20];
+    Question[] q;
     private File file;
     private File file2;
 
-    public Questionnaire(File f, File g) {
+    public Questionnaire(File f, File g, int length) {
         file = new File("questionarre.txt");
         file2 = new File("answers.txt");
+        q = new Question[length];
     }
 
-    public void readQuestionaire() {
+    public void readQuestionnaire() {
         Scanner s = null;
         try {
             s = new Scanner(getFile());
@@ -38,28 +39,12 @@ public class Questionnaire {
         while (s.hasNextLine()) {
             String g = s.nextLine();
             String[] h = g.split(",");
-            matchTest[count] = new Question(h[0], parseInt(h[1]));
+            q[count] = new Question(h[0], parseInt(h[1]));
             count++;
         }
         s.close();
     }
 
-//    public void initializeAnswer() {
-//        ArrayList<String> an = new ArrayList();
-//    }
-//
-//    public void setAnswer(int index, String response, ArrayList an) {
-//        an.add(index, response);
-//    }
-//
-//    public void printAnswers() {
-//        PrintWriter p = null;
-//        try {
-//            new PrintWriter(new FileWriter(getFile2()), true);
-//        } catch (IOException ex) {
-//        }
-//        
-//     }
     /**
      * @return the file
      */

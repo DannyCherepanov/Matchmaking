@@ -24,7 +24,9 @@ public class QuestionScreen extends javax.swing.JFrame {
     int globalCount = 0;
     static File file = new File("questionarre.txt");
     static File file2 = new File("answers.txt");
-    static Questionnaire q1 = new Questionnaire(file, file2);
+    static Questionnaire q1 = new Questionnaire(file, file2, 7);
+
+    boolean[] a = new boolean[q1.q.length];
 
     /**
      * Creates new form QuestionScreen
@@ -54,11 +56,10 @@ public class QuestionScreen extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
+        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
-
-        questionPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         currentQ.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         currentQ.setText("<Question>");
@@ -124,6 +125,13 @@ public class QuestionScreen extends javax.swing.JFrame {
         jRadioButton5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jRadioButton5.setText("Strongly Agree");
 
+        save.setText("Save Answers");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +147,9 @@ public class QuestionScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nextQ)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(prevQ))
+                        .addComponent(prevQ)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(save))
                     .addComponent(jRadioButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -160,7 +170,8 @@ public class QuestionScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextQ)
-                    .addComponent(prevQ))
+                    .addComponent(prevQ)
+                    .addComponent(save))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
 
@@ -168,16 +179,6 @@ public class QuestionScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
-        PrintWriter p = null;
-        try {
-            p = new PrintWriter(new FileOutputStream(file2), true);
-        } catch (IOException ex) {
-        }
-
-        globalCount++;
-        if (globalCount > q1.matchTest.length - 1) {
-            globalCount = q1.matchTest.length - 1;
-        }
         if (jRadioButton1.isSelected()) {
             saveAnswer(1);
         } else if (jRadioButton2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
@@ -189,8 +190,11 @@ public class QuestionScreen extends javax.swing.JFrame {
         } else if (jRadioButton5.isSelected()) {
             saveAnswer(5);
         }
-        p.close();
-        currentQ.setText(q1.matchTest[globalCount].getQ());
+        globalCount++;
+        if (globalCount > q1.q.length - 1) {
+            globalCount = q1.q.length - 1;
+        }
+        currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
@@ -198,22 +202,32 @@ public class QuestionScreen extends javax.swing.JFrame {
         if (globalCount > 0) {
             globalCount = 0;
         }
-        currentQ.setText(q1.matchTest[globalCount].getQ());
+        currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        saveFinal(test);
+    }//GEN-LAST:event_saveActionPerformed
     public void saveAnswer(int answer) {
+        if (a[globalCount] == true) {
+            test.removeAnswer(globalCount);
+        }
+        test.setAnswer(globalCount, answer);
+        a[globalCount] = true;
+    }
+
+    public void saveFinal(student s) {
         PrintWriter p = null;
         try {
             p = new PrintWriter(new FileOutputStream(file2), true);
         } catch (IOException ex) {
         }
-
-        if (test.getAnswer(globalCount) == 0) {
-            test.setAnswer(globalCount, answer);
-        } else {
-            test.removeAnswer(globalCount);
-            test.setAnswer(globalCount, answer);
+        p.print(test.getUn() + "," + test.getGender() + "," + test.getOri() + ",");
+        for (int i = 0; i < q1.q.length - 1; i++) {
+            p.print(test.getAnswer(i) + ",");
         }
-        p.print(test.getAnswer(globalCount) + ",");
+        p.print(test.getAnswer(q1.q.length - 1));
+        p.close();
     }
 
     /**
@@ -225,8 +239,8 @@ public class QuestionScreen extends javax.swing.JFrame {
             p = new PrintWriter(new FileWriter(file2), true);
         } catch (IOException ex) {
         }
-        q1.readQuestionaire();
-        p.print(test.getUn() + "," + test.getGender() + "," + test.getOri() + ",");
+        q1.readQuestionnaire();
+
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -271,6 +285,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     private javax.swing.JButton nextQ;
     private javax.swing.JButton prevQ;
     private matchmaking.QuestionPanel questionPanel1;
+    private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
 
 }
