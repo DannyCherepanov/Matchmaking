@@ -34,10 +34,11 @@ public class student extends User implements Comparable<student> {
         setPw(pw);
         this.gender = gender;
         this.ori = ori;
-        
-//        this.answer = new ArrayList(answer);
-    }
-
+        }
+    
+    
+    
+    
     //for determining matches, 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
     private int gender;
     //for determining matches, 0 for not entered yet, 1 for likes men, 2 for likes women, 4 for either, 3 for literally anyone 
@@ -47,7 +48,7 @@ public class student extends User implements Comparable<student> {
     //private boolean romantic;
     //stores integers representing answers to questions
     //values between 1 and 5, 1 being strongly disagree, 5 being strongly agree
-    private ArrayList <Integer> answer ;
+    private ArrayList <Integer> answer = new ArrayList();
     
     /**
      * Gets a student's entered gender

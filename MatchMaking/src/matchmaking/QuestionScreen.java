@@ -170,7 +170,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
         PrintWriter p = null;
         try {
-            p = new PrintWriter(new FileWriter("answers.txt"), true);
+            p = new PrintWriter(new FileOutputStream(file2), true);
         } catch (IOException ex) {
         }
 
@@ -203,7 +203,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     public void saveAnswer(int answer) {
         PrintWriter p = null;
         try {
-            p = new PrintWriter(new FileWriter("answers.txt"), true);
+            p = new PrintWriter(new FileOutputStream(file2), true);
         } catch (IOException ex) {
         }
 
