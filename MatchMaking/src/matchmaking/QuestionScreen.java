@@ -180,7 +180,9 @@ public class QuestionScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * This method saves the answer to the given question based on the button chosen. AUTHOR: JADEN
+     * This method saves the answer to the given question based on the button
+     * chosen. AUTHOR: JADEN
+     *
      * @param evt This method is called when the button is pressed.
      */
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
@@ -196,56 +198,95 @@ public class QuestionScreen extends javax.swing.JFrame {
         } else if (jRadioButton5.isSelected()) {
             saveAnswer(5);
         }
-        
+
         //The globalCount is increased by 1, signalling the program to move to the next question for all purposes.
         globalCount++;
-        
-        //
+
+        //If the globalCount exceeds the length of the questionnaire, it returns to the maximum amount.
         if (globalCount > q1.q.length - 1) {
             globalCount = q1.q.length - 1;
         }
+
+        //The text on the GUI changes to the next question.
         currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     /**
-     * This method returns to the previous question when the respective button is pressed. AUTHOR: JADEN
+     * This method returns to the previous question when the respective button
+     * is pressed. AUTHOR: JADEN
+     *
      * @param evt This method is called when the button is pressed.
      */
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
+        //The globalCount is decreased by 1, signalling the program to move to the previous question for all purposes.
         globalCount--;
+
+        //If the globalCount goes below 0, the globalCount returns to 0.
         if (globalCount < 0) {
             globalCount = 0;
         }
+
+        //The text on the GUI changes to the previous question.
         currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_prevQActionPerformed
 
+    /**
+     * This method is called at the end of the questionnaire when the answers
+     * need to be saved. AUTHOR: JADEN
+     *
+     * @param evt This method is called when the button is pressed.
+     */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        //All this method does is call another method when the button is pressed.        
         saveFinal(test);
     }//GEN-LAST:event_saveActionPerformed
 
+    /**
+     * This method saves an answer to a given question. AUTHOR: JADEN
+     *
+     * @param answer The answer selected.
+     */
     public void saveAnswer(int answer) {
+        //If the question already has an answer, remove the current answer in that index.
         if (a[globalCount] == true) {
             test.removeAnswer(globalCount);
         }
+
+        //Set the answer at the global index wich the answer selected.
         test.setAnswer(globalCount, answer);
+
+        //Mark the question answered as true.
         a[globalCount] = true;
     }
 
+    /**
+     * This method saves the final answer and prints it to the file. AUTHOR:
+     * JADEN
+     *
+     * @param s The student who is taking the questionnaire.
+     */
     public void saveFinal(student s) {
+        //Create a new printWriter and catch any exceptions.
         PrintWriter p = null;
         try {
             p = new PrintWriter(new FileOutputStream(file2), true);
         } catch (IOException ex) {
         }
+
+        //Save the users information.
         p.print(test.getUn() + "," + test.getPw() + "," + test.getGender() + "," + test.getOri() + ",");
         for (int i = 0; i < q1.q.length - 1; i++) {
+            //Loop through and print each answer.
             p.print(test.getAnswer(i) + ",");
         }
+        //Print the final answer without the file.
         p.println(test.getAnswer(q1.q.length - 1));
         p.close();
     }
 
     /**
+     * The main method. AUTHOR: NETBEANS & JADEN
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) throws FileNotFoundException {
