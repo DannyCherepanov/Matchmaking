@@ -28,7 +28,7 @@ public class Questionnaire {
         q = new Question[length];
     }
 
-    public void readQuestionaire() {
+    public void readQuestionnaire() {
         Scanner s = null;
         try {
             s = new Scanner(getFile());
@@ -45,22 +45,6 @@ public class Questionnaire {
         s.close();
     }
 
-//    public void initializeAnswer() {
-//        ArrayList<String> an = new ArrayList();
-//    }
-//
-//    public void setAnswer(int index, String response, ArrayList an) {
-//        an.add(index, response);
-//    }
-//
-//    public void printAnswers() {
-//        PrintWriter p = null;
-//        try {
-//            new PrintWriter(new FileWriter(getFile2()), true);
-//        } catch (IOException ex) {
-//        }
-//        
-//     }
     /**
      * @return the file
      */

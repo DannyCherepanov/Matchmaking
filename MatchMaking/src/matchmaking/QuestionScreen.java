@@ -239,7 +239,7 @@ public class QuestionScreen extends javax.swing.JFrame {
             p = new PrintWriter(new FileWriter(file2), true);
         } catch (IOException ex) {
         }
-        q1.readQuestionaire();
+        q1.readQuestionnaire();
 
 
         /* Set the Nimbus look and feel */
