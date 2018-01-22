@@ -92,6 +92,7 @@ public class student extends User implements Comparable<student> {
         answer.add(ansAT, (Integer) ans);
     }
 
+    //Jaden did this method. It's kinda self-explanatory.
     public void removeAnswer(int ansAT) {
         answer.remove(ansAT);
     }

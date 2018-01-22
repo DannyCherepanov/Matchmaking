@@ -102,13 +102,13 @@ public class screen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String g="";
-        for(char cc:jPasswordField1.getPassword()){
-            g.concat(cc+"");
+        String g = "";
+        for (char cc : jPasswordField1.getPassword()) {
+            g.concat(cc + "");
         }
-        if (!(jTextField1.getText().contains(log.d) && g.contains(log.d) && jTextField3.getText().contains(log.d) && jTextField4.getText().contains(log.d))) {
+        //if (!(jTextField1.getText().contains(log.d) && g.contains(log.d) && jTextField3.getText().contains(log.d) && jTextField4.getText().contains(log.d))) {
             //main.reg(jTextField3.getText(), jTextField4.getText(), jTextField1.getText(), g);
-        }
+        //}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

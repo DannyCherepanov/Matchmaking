@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import login.log;
 import usersPKG.student;
 
 /**
@@ -178,7 +179,12 @@ public class QuestionScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method saves the answer to the given question based on the button chosen. AUTHOR: JADEN
+     * @param evt This method is called when the button is pressed.
+     */
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
+        //An if statement that saves the answer based on the button selected. Details on the saveAnswer method are detailed below.
         if (jRadioButton1.isSelected()) {
             saveAnswer(1);
         } else if (jRadioButton2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
@@ -190,16 +196,24 @@ public class QuestionScreen extends javax.swing.JFrame {
         } else if (jRadioButton5.isSelected()) {
             saveAnswer(5);
         }
+        
+        //The globalCount is increased by 1, signalling the program to move to the next question for all purposes.
         globalCount++;
+        
+        //
         if (globalCount > q1.q.length - 1) {
             globalCount = q1.q.length - 1;
         }
         currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
+    /**
+     * This method returns to the previous question when the respective button is pressed. AUTHOR: JADEN
+     * @param evt This method is called when the button is pressed.
+     */
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
         globalCount--;
-        if (globalCount > 0) {
+        if (globalCount < 0) {
             globalCount = 0;
         }
         currentQ.setText(q1.q[globalCount].getQ());
@@ -208,6 +222,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         saveFinal(test);
     }//GEN-LAST:event_saveActionPerformed
+
     public void saveAnswer(int answer) {
         if (a[globalCount] == true) {
             test.removeAnswer(globalCount);
@@ -222,24 +237,27 @@ public class QuestionScreen extends javax.swing.JFrame {
             p = new PrintWriter(new FileOutputStream(file2), true);
         } catch (IOException ex) {
         }
-        p.print(test.getUn() + "," + test.getGender() + "," + test.getOri() + ",");
+        p.print(test.getUn() + "," + test.getPw() + "," + test.getGender() + "," + test.getOri() + ",");
         for (int i = 0; i < q1.q.length - 1; i++) {
             p.print(test.getAnswer(i) + ",");
         }
-        p.print(test.getAnswer(q1.q.length - 1));
+        p.println(test.getAnswer(q1.q.length - 1));
         p.close();
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileNotFoundException {
+        log l = new log("reg.txt");
+
         PrintWriter p = null;
         try {
             p = new PrintWriter(new FileWriter(file2), true);
         } catch (IOException ex) {
         }
         q1.readQuestionnaire();
+        p.close();
 
 
         /* Set the Nimbus look and feel */
