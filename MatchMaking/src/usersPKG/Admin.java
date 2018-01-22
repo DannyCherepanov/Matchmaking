@@ -36,13 +36,13 @@ public class Admin extends User {
         return (this.getUn() + dl + this.getPw() + dl + isAdmin);
     }
 
-    public void editQuestion(int questionNumber) {
-        File file = new File("questionarre.txt");
-        questionNumber--;
-        Scanner s = null;
-        try {
-            s = new Scanner(file);
-        } catch (FileNotFoundException ex) {
-        }
-    }
+//    public void editQuestion(int index) {
+//        File file = new File("questionarre.txt");
+//        
+//        Scanner s = null;
+//        try {
+//            s = new Scanner(file);
+//        } catch (FileNotFoundException ex) {
+//        }
 }
+
