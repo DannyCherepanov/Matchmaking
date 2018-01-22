@@ -36,6 +36,7 @@ public class Admin extends User {
         return (this.getUn() + dl + this.getPw() + dl + isAdmin);
     }
 
+    
     public void editQuestion(int questionNumber) {
         File file = new File("questionarre.txt");
         questionNumber--;
