@@ -5,6 +5,11 @@
  */
 package usersPKG;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import matchmaking.Questionnaire;
+
 /**
  *
  * @author duncan.chaytor
@@ -31,4 +36,13 @@ public class Admin extends User {
         return (this.getUn() + dl + this.getPw() + dl + isAdmin);
     }
 
+    public void editQuestion(int questionNumber) {
+        File file = new File("questionarre.txt");
+        questionNumber--;
+        Scanner s = null;
+        try {
+            s = new Scanner(file);
+        } catch (FileNotFoundException ex) {
+        }
+    }
 }
