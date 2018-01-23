@@ -5,15 +5,20 @@
  */
 package login;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import matchmaking.QuestionScreen;
 import usersPKG.student;
 
 /**
  *
- * @author dunca
+ * @author dunca (Duncan)
  */
 public class ifGenderOrOriNULL extends javax.swing.JFrame {
-
-      /**
+student s;
+     /**
      * Creates new form ifGenderOrOriNULL
      */
     public ifGenderOrOriNULL()  {
@@ -26,6 +31,7 @@ public class ifGenderOrOriNULL extends javax.swing.JFrame {
      */
     public ifGenderOrOriNULL(student s) {
         initComponents();
+        this.s = s;
     }
 
     /**
@@ -37,14 +43,79 @@ public class ifGenderOrOriNULL extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        genMale = new javax.swing.JButton();
+        genFem = new javax.swing.JButton();
+        genOther = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        oriMen = new javax.swing.JButton();
+        oriFem = new javax.swing.JButton();
+        oriBi = new javax.swing.JButton();
+        oriAny = new javax.swing.JButton();
+        continuebutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        genMale.setText("Male");
+        genMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                genMaleActionPerformed(evt);
+            }
+        });
+
+        genFem.setText("Female");
+        genFem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genFemActionPerformed(evt);
+            }
+        });
+
+        genOther.setText("Don't want to say/other");
+        genOther.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genOtherActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel1.setText("My Gender is...");
+
+        jLabel2.setText("I'm looking for...");
+
+        oriMen.setText("Boys");
+        oriMen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oriMenActionPerformed(evt);
+            }
+        });
+
+        oriFem.setText("Girls");
+        oriFem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oriFemActionPerformed(evt);
+            }
+        });
+
+        oriBi.setText("Boys/Girls");
+        oriBi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oriBiActionPerformed(evt);
+            }
+        });
+
+        oriAny.setText("Anyone");
+        oriAny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oriAnyActionPerformed(evt);
+            }
+        });
+
+        continuebutton.setText("CONTINUE");
+        continuebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuebuttonActionPerformed(evt);
             }
         });
 
@@ -53,24 +124,122 @@ public class ifGenderOrOriNULL extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton1)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(genMale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(genFem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(genOther, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(continuebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(oriAny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oriMen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(oriFem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(oriBi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jButton1)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(genMale)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(genFem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(genOther))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(oriMen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(oriFem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(oriBi)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(oriAny)
+                        .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(continuebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void genMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genMaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        s.setGen(1);
+    }//GEN-LAST:event_genMaleActionPerformed
+
+    private void oriMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oriMenActionPerformed
+        // TODO add your handling code here:
+        s.setOri(1);
+    }//GEN-LAST:event_oriMenActionPerformed
+
+    private void continuebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuebuttonActionPerformed
+        // TODO add your handling code here:
+        //check to see if gender and/or orientation are entered
+        if (s.getOri() == 0 && s.getGender() == 0)  {
+           JOptionPane.showMessageDialog(this, "Please enter your orientation and gender.");
+        }
+        else if (s.getOri() == 0)    {
+           JOptionPane.showMessageDialog(this, "Please enter your orientation.");
+        }
+        else if (s.getGender() == 0)    {
+           JOptionPane.showMessageDialog(this, "Please enter your gender.");
+        }
+        
+        //if both present, send it to question screen with student
+        
+        /* Create and display the form */
+        else    {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new QuestionScreen(s).setVisible(true);
+            }
+        });
+        //get rid of the screen
+        this.dispose();
+        }
+    }//GEN-LAST:event_continuebuttonActionPerformed
+
+    private void genFemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFemActionPerformed
+        // TODO add your handling code here:
+        s.setGen(2);
+    }//GEN-LAST:event_genFemActionPerformed
+
+    private void genOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genOtherActionPerformed
+        // TODO add your handling code here:
+        s.setGen(3);
+    }//GEN-LAST:event_genOtherActionPerformed
+
+    private void oriFemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oriFemActionPerformed
+        // TODO add your handling code here:
+        s.setOri(2);
+    }//GEN-LAST:event_oriFemActionPerformed
+
+    private void oriBiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oriBiActionPerformed
+        // TODO add your handling code here:
+        s.setOri(4);
+    }//GEN-LAST:event_oriBiActionPerformed
+
+    private void oriAnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oriAnyActionPerformed
+        // TODO add your handling code here:
+        s.setOri(3);
+    }//GEN-LAST:event_oriAnyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +277,16 @@ public class ifGenderOrOriNULL extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton continuebutton;
+    private javax.swing.JButton genFem;
+    private javax.swing.JButton genMale;
+    private javax.swing.JButton genOther;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton oriAny;
+    private javax.swing.JButton oriBi;
+    private javax.swing.JButton oriFem;
+    private javax.swing.JButton oriMen;
     // End of variables declaration//GEN-END:variables
 }
