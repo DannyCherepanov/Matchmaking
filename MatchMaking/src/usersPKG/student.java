@@ -41,8 +41,27 @@ public class student extends User implements Comparable<student> {
     //for determining matches, 0 for not entered yet, 1 for likes men, 2 for likes women, 4 for either, 3 for literally anyone 
     private int ori;
 
-    //true if looking for match, false if just looking for friend
-    //private boolean romantic;
+    
+    /**
+     * Sets a student's orientation
+     * @param ori 0 for not entered yet, 1 for likes men, 2 for likes women, 4 for either, 3 for literally anyone 
+     */
+    public void setOri(int ori) {
+        this.ori = ori;
+    }
+    
+    /**
+     * Sets a student's gender
+     * @param gender 0 for not yet entered, 1 for male, 2 for female, 3 for unspecified/other
+     */
+    public void setGen(int gender)  {
+        this.gender = gender;
+    }
+    
+    
+    
+    
+    
     //stores integers representing answers to questions
     //values between 1 and 5, 1 being strongly disagree, 5 being strongly agree
     private ArrayList<Integer> answer = new ArrayList();
