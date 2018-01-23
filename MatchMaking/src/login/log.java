@@ -17,10 +17,9 @@ public class log {
 
     private File f;
 
-    ArrayList a = new ArrayList<student>();
+    ArrayList a = new ArrayList<User>();
     public static final String d = ",";
-
-    private student current;
+    public student current;
 
     /**
      * starts a file under given directory for easy login/logout system L
@@ -34,12 +33,17 @@ public class log {
         f = new File(x);
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
-            a.add(new student(s.next(), s.next(), s.nextInt(), s.nextInt()));
+            String temp = s.next();
+            if (temp.equals("A")) {
+                a.add(new Admin(s.next(), s.next()));
+            } else if (temp.equals("S")) {
+                a.add(new student(s.next(), s.next(), s.nextInt(), s.nextInt()));
+            }
         }
     }
 
     /**
-     * registers a user in file as long as they don't have a bad password
+     * registers a student in file as long as they don't have a bad password
      *
      * @param fName first name
      * @param lName last name
@@ -47,10 +51,10 @@ public class log {
      * @param password password
      * @throws FileNotFoundException
      */
-    public void reg(String user, String password, int gender, int ori) throws FileNotFoundException {
+    public void regStudent(String user, String password, int gender, int ori) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(f);
         a.add(new student(user, password, gender, ori));
-        pw.append(user + d + password + d + gender + d + ori);
+        pw.append("S" + d + user + d + password + d + gender + d + ori);
         pw.close();
     }
 
@@ -62,30 +66,19 @@ public class log {
      * @return returns true if the person is in the system
      * @throws FileNotFoundException
      */
-    public boolean login(String user, String password) throws FileNotFoundException {
+    public String login(String user, String password) throws FileNotFoundException {
         //send entered password to encryption method
         password = User.encryptPW(password);
+        Scanner s = new Scanner(f);
         for (int g = 0; g <= a.size(); g++) {
-            if (((student) a.get(g)).getUn().equals(user) && ((student) a.get(g)).getPw().equals(password)) {
-                setCurrent(new student(user, password, 1, 2));
-                return true;
+            
+            if (((User) a.get(g)).getUn().equals(user) && ((User) a.get(g)).getPw().equals(password)) {
+                current = (student) a.get(g);
+                return s.next();
             }
+            s.nextLine();
         }
-        return false;
+        return null;
     }
-
-    /**
-     * @return the current
-     */
-    public student getCurrent() {
-        return current;
-    }
-
-    /**
-     * @param current the current to set
-     */
-    public void setCurrent(student current) {
-        this.current = current;
-    }
-
+    
 }

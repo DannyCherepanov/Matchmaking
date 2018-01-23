@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import matchmaking.QuestionScreen;
 import usersPKG.student;
 
 /**
@@ -92,96 +93,37 @@ public class screen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        try {
-//            //        try {
-////            // TODO add your handling code here:
-////            if (main.login(jTextField5.getText(), jPasswordField1.getText())) {
-////                //figure out how to make this work with jaden's gui
-////            }
-////        } catch (FileNotFoundException ex) {
-////            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-//            main.login(jTextField5.getText(), jPasswordField1.getText());
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-
-
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ifGenderOrOriNULL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ifGenderOrOriNULL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ifGenderOrOriNULL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ifGenderOrOriNULL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        
-
-        
-//IF THE STUDENT'S GENDER OR ORIENTATION IS 0!! ADD IF STATEMENT DANNY
-//ALSO FUCKING PUT STUDENTS IN HERE, CHANGE THE CONSTRUCTORS TO THE STUDENT IN QUESTION
-//change the goddamn new student constructor to the student based on the username entered
-
-        //DELETE THIS WHEN YOU DO WHAT YOU WERE SUPPOSED TO
-        student gettheactualstudentfromunpw = new student("b","b",0,0);
-
-
-         //send to question display screen if student has gender/ori entered
-        /* Create and display the form */
-        //change this to the variable for a gotten student! for now it will just be a random thing
-        if (gettheactualstudentfromunpw.getGender() != 0 && gettheactualstudentfromunpw.getOri() != 0)   {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                new matchmaking.QuestionScreen().setVisible(true);
-
-            }
-        });
-        this.dispose();
-        }
-        
-        
-        //if the student is missing gender and/or orientation, send to gender/orientation screen
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ifGenderOrOriNULL(new student("b","b",0,0)).setVisible(true);
-            }
-        });
-        this.dispose();
-    
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String g = "";
+        String temp = null;
         for (char cc : jPasswordField1.getPassword()) {
             g.concat(cc + "");
         }
-        //if (!(jTextField1.getText().contains(log.d) && g.contains(log.d) && jTextField3.getText().contains(log.d) && jTextField4.getText().contains(log.d))) {
-        //main.reg(jTextField3.getText(), jTextField4.getText(), jTextField1.getText(), g);
-        //}
+        
+        try {
+            temp = main.login(jTextField5.getText(),g);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (temp.equals("S")){
+            if(main.current.getOri()==0||main.current.getGender()==0){
+                ifGenderOrOriNULL thing = new ifGenderOrOriNULL();
+                this.setVisible(false);
+            } else {
+                QuestionScreen item = new QuestionScreen();
+                this.setVisible(false);
+            }
+        }else if(temp.equals("A")){
+            adminScreen AA = new adminScreen();
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
