@@ -253,7 +253,7 @@ public class QuestionScreen extends javax.swing.JFrame {
      * @param evt This method is called when the button is pressed.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        //All this method does is call another method when the button is pressed.        
+        //All this method does is call other methos when the button is pressed. Displays the match results. 
         saveFinal(test);
         match();
     }//GEN-LAST:event_saveActionPerformed
@@ -301,7 +301,7 @@ public class QuestionScreen extends javax.swing.JFrame {
         p.close();
     }
 
-    //JADEN'S WORK IN PROGRESS METHOD
+    //JADEN'S WORK IN PROGRESS METHOD FOR DISPLAYING MATCH RESULTS
     public void match() {
         Scanner sc = null;
         try {
