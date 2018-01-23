@@ -20,8 +20,12 @@ public class log {
     ArrayList a = new ArrayList<student>();
     public static final String d = ",";
 
+    private student current;
+
     /**
-     * starts a file under given directory for easy login/logout system L *
+     * starts a file under given directory for easy login/logout system L
+     *
+     *
      * @param x location of file
      *
      * @throws FileNotFoundException
@@ -63,12 +67,25 @@ public class log {
         password = User.encryptPW(password);
         for (int g = 0; g <= a.size(); g++) {
             if (((student) a.get(g)).getUn().equals(user) && ((student) a.get(g)).getPw().equals(password)) {
+                setCurrent(new student(user, password, 1, 2));
                 return true;
             }
         }
         return false;
     }
-    
-    
+
+    /**
+     * @return the current
+     */
+    public student getCurrent() {
+        return current;
+    }
+
+    /**
+     * @param current the current to set
+     */
+    public void setCurrent(student current) {
+        this.current = current;
+    }
 
 }

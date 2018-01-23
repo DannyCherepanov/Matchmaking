@@ -91,14 +91,29 @@ public class screen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            if (main.login(jTextField5.getText(), jPasswordField1.getText())) {
-                //figure out how to make this work with jaden's gui
+//        try {
+//            //        try {
+////            // TODO add your handling code here:
+////            if (main.login(jTextField5.getText(), jPasswordField1.getText())) {
+////                //figure out how to make this work with jaden's gui
+////            }
+////        } catch (FileNotFoundException ex) {
+////            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
+////        }
+//            main.login(jTextField5.getText(), jPasswordField1.getText());
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+
+                new matchmaking.QuestionScreen().setVisible(true);
+
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        });
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -107,7 +122,7 @@ public class screen extends javax.swing.JFrame {
             g.concat(cc + "");
         }
         //if (!(jTextField1.getText().contains(log.d) && g.contains(log.d) && jTextField3.getText().contains(log.d) && jTextField4.getText().contains(log.d))) {
-            //main.reg(jTextField3.getText(), jTextField4.getText(), jTextField1.getText(), g);
+        //main.reg(jTextField3.getText(), jTextField4.getText(), jTextField1.getText(), g);
         //}
     }//GEN-LAST:event_jButton1ActionPerformed
 
