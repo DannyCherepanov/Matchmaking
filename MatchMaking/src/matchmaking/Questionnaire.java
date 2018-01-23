@@ -38,7 +38,7 @@ public class Questionnaire {
         int count = 0;
         while (s.hasNextLine()) {
             String g = s.nextLine();
-            String[] h = g.split(",");
+            String[] h = g.split(",,");
             q[count] = new Question(h[0], parseInt(h[1]));
             count++;
         }

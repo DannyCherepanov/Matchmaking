@@ -22,7 +22,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     //The test student used to test the methods.
     //THIS NEEDS TO BE CHANGED SO THE STUDENT LOGS IN AND THEIR INFORMATION GETS STORED HERE
-    static student test = new student("Jaden", "Bo999bb", 1, 2);
+    static student test = new student("Answers", "Bubber", 1, 1);
 
     //The colour of the background of the program.
     Color pink = new Color(255, 192, 203);
@@ -33,7 +33,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     //The files used in the experiment (questions and answers). 
     private static File file = new File("questionarre.txt");
     private static File file2 = new File("answers.txt");
-    static Questionnaire q1 = new Questionnaire(getFile(), getFile2(), 7);
+    static Questionnaire q1 = new Questionnaire(getFile(), getFile2(), 16);
 
     //An array of booleans that checks if a question has already been answered or not.
     private boolean[] a = new boolean[q1.q.length];
@@ -70,11 +70,11 @@ public class QuestionScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         nextQ = new javax.swing.JButton();
         prevQ = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        choice1 = new javax.swing.JRadioButton();
+        choice2 = new javax.swing.JRadioButton();
+        choice3 = new javax.swing.JRadioButton();
+        choice4 = new javax.swing.JRadioButton();
+        choice5 = new javax.swing.JRadioButton();
         save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,25 +124,25 @@ public class QuestionScreen extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jRadioButton1.setText("Strongly Disagree");
+        buttonGroup1.add(choice1);
+        choice1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        choice1.setText("Strongly Disagree");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jRadioButton2.setText("Disagree");
+        buttonGroup1.add(choice2);
+        choice2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        choice2.setText("Disagree");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jRadioButton3.setText("Neutral");
+        buttonGroup1.add(choice3);
+        choice3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        choice3.setText("Neutral");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jRadioButton4.setText("Agree");
+        buttonGroup1.add(choice4);
+        choice4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        choice4.setText("Agree");
 
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jRadioButton5.setText("Strongly Agree");
+        buttonGroup1.add(choice5);
+        choice5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        choice5.setText("Strongly Agree");
 
         save.setText("Save Answers");
         save.addActionListener(new java.awt.event.ActionListener() {
@@ -159,17 +159,17 @@ public class QuestionScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2)
+                    .addComponent(choice5)
+                    .addComponent(choice4)
+                    .addComponent(choice3)
+                    .addComponent(choice2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nextQ)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(prevQ)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(save))
-                    .addComponent(jRadioButton1))
+                    .addComponent(choice1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,15 +177,15 @@ public class QuestionScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(questionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(choice1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(choice2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(choice3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4)
+                .addComponent(choice4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton5)
+                .addComponent(choice5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextQ)
@@ -205,15 +205,15 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     private void nextQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQActionPerformed
         //An if statement that saves the answer based on the button selected. Details on the saveAnswer method are detailed below.
-        if (jRadioButton1.isSelected()) {
+        if (choice1.isSelected()) {
             saveAnswer(1);
-        } else if (jRadioButton2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
+        } else if (choice2.isSelected()) {                                                                                                                                                                                                            //jaden is boosted
             saveAnswer(2);
-        } else if (jRadioButton3.isSelected()) {
+        } else if (choice3.isSelected()) {
             saveAnswer(3);
-        } else if (jRadioButton4.isSelected()) {
+        } else if (choice4.isSelected()) {
             saveAnswer(4);
-        } else if (jRadioButton5.isSelected()) {
+        } else if (choice5.isSelected()) {
             saveAnswer(5);
         }
 
@@ -227,6 +227,9 @@ public class QuestionScreen extends javax.swing.JFrame {
             if (getGlobalCount() > y) {
                 setGlobalCount(y);
             }
+
+            //Checks which type of question is being asked.
+            typeCheck(q1.q[getGlobalCount()].getqType());
 
             //The text on the GUI changes to the next question.
             currentQ.setText(q1.q[getGlobalCount()].getQ());
@@ -248,6 +251,8 @@ public class QuestionScreen extends javax.swing.JFrame {
             setGlobalCount(0);
         }
 
+        //Checks which type of question is being asked.
+        typeCheck(q1.q[getGlobalCount()].getqType());
         //The text on the GUI changes to the previous question.
         currentQ.setText(q1.q[getGlobalCount()].getQ());
     }//GEN-LAST:event_prevQActionPerformed
@@ -287,6 +292,36 @@ public class QuestionScreen extends javax.swing.JFrame {
     }
 
     /**
+     * Checks which type of question is being asked and changes the screen
+     * accordingly. AUTHOR: JADEN
+     *
+     * @param q The question in question.
+     */
+    public void typeCheck(int x) {
+        //Sets all buttons to be visible and changes the text to the agree-disagree scale.
+        if (q1.q[getGlobalCount()].getqType() == 1) {
+            choice2.setVisible(true);
+            choice3.setVisible(true);
+            choice4.setVisible(true);
+
+            choice1.setText("Strongly Disagree");
+            choice2.setText("Disagree");
+            choice3.setText("Neutral");
+            choice4.setText("Agree");
+            choice5.setText("StronglyAgree");
+
+            //Sets only two buttons to be visible and changes the text to the yes/no choice.
+        } else {
+            choice2.setVisible(false);
+            choice3.setVisible(false);
+            choice4.setVisible(false);
+
+            choice1.setText("Yes");
+            choice5.setText("No");
+        }
+    }
+
+    /**
      * This method saves the final answer and prints it to the file. AUTHOR:
      * JADEN
      *
@@ -297,7 +332,7 @@ public class QuestionScreen extends javax.swing.JFrame {
         //Create a new printWriter and catch any exceptions.
         FileWriter p = null;
         try {
-            p = new FileWriter(getFile2(), true);
+            p = new FileWriter(new File("answers.txt"), true);
         } catch (IOException ex) {
         }
 
@@ -308,7 +343,8 @@ public class QuestionScreen extends javax.swing.JFrame {
             p.write(test.getAnswer(i) + ",");
         }
         //Print the final answer without the comma delimiter.
-        p.write(test.getAnswer(y) + System.lineSeparator());
+        p.write(test.getAnswer(y) + "\r\n");
+
         p.close();
 
     }
@@ -344,16 +380,8 @@ public class QuestionScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) throws FileNotFoundException {
-        log l = new log("reg.txt");
 
-        PrintWriter p = null;
-        try {
-            p = new PrintWriter(new FileWriter(getFile2()), true);
-        } catch (IOException ex) {
-        }
         q1.readQuestionnaire();
-        p.close();
-
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -388,13 +416,13 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton choice1;
+    private javax.swing.JRadioButton choice2;
+    private javax.swing.JRadioButton choice3;
+    private javax.swing.JRadioButton choice4;
+    private javax.swing.JRadioButton choice5;
     private javax.swing.JLabel currentQ;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JButton nextQ;
     private javax.swing.JButton prevQ;
     private matchmaking.QuestionPanel questionPanel1;

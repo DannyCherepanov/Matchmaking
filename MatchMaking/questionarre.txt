@@ -1,7 +1,16 @@
-J,1
-K,0
-R,1
-Y,1
-X,1
-P,0
-RD Help me,0
+I enjoy long walks on the beach.,,1
+Horror is a genre that interests me.,,1
+Science fiction is a genre that interests me.,,1
+Fantasy is a genre that interests me.,,1
+Romance is a genre that interests me.,,1
+Comedy is a genre I frequently enjoy.,,1
+I prefer dogs over cats.,,2
+In my free time, I enjoy reading.,,1
+In my free time, I enjoy watching movies.,,1
+In my free time, I enjoy playing video games.,,1
+In my free time, I enjoy playing sports or exercising.,,1
+On my dream vacation, I prefer exploration or adventure over relaxation.,,2
+I prefer comfortable clothes over stylish ones.,,2
+I enjoy easily-accessible activities in which new people can best more experienced players sometimes.,,1
+I enjoy activities which require large amount of practice to be proficient in.,,1
+I would describe myself as 'laid-back' or relaxed.,,1
