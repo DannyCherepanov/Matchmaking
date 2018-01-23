@@ -22,7 +22,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     //The test student used to test the methods.
     //THIS NEEDS TO BE CHANGED SO THE STUDENT LOGS IN AND THEIR INFORMATION GETS STORED HERE
-    static student test = new student("student", "debt", 1, 1);
+    static student test = new student("Jaden", "Bo999bb", 1, 2);
 
     //The colour of the background of the program.
     Color pink = new Color(255, 192, 203);
@@ -47,6 +47,12 @@ public class QuestionScreen extends javax.swing.JFrame {
     public QuestionScreen() {
         initComponents();
         repaint();
+    }
+
+    public QuestionScreen(student s) {
+        initComponents();
+        repaint();
+        test = s;
     }
 
     /**
@@ -253,9 +259,13 @@ public class QuestionScreen extends javax.swing.JFrame {
      * @param evt This method is called when the button is pressed.
      */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        //All this method does is call other methos when the button is pressed. Displays the match results. 
-        saveFinal(test);
-        match();
+        try {
+            //All this method does is call other methos when the button is pressed. Displays the match results.
+            saveFinal(test);
+            // match();
+        } catch (IOException ex) {
+            Logger.getLogger(QuestionScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveActionPerformed
 
     /**
@@ -282,23 +292,25 @@ public class QuestionScreen extends javax.swing.JFrame {
      *
      * @param s The student who is taking the questionnaire.
      */
-    public void saveFinal(student s) {
+    public void saveFinal(student s) throws IOException {
+
         //Create a new printWriter and catch any exceptions.
-        PrintWriter p = null;
+        FileWriter p = null;
         try {
-            p = new PrintWriter(new FileOutputStream(getFile2()), true);
+            p = new FileWriter(getFile2(), true);
         } catch (IOException ex) {
         }
 
         //Save the users information.
-        p.print(test.getUn() + "," + test.getPw() + "," + test.getGender() + "," + test.getOri() + ",");
+        p.write(test.getUn() + "," + test.getPw() + "," + test.getGender() + "," + test.getOri() + ",");
         for (int i = 0; i < y; i++) {
             //Loop through and print each answer.
-            p.print(test.getAnswer(i) + ",");
+            p.write(test.getAnswer(i) + ",");
         }
-        //Print the final answer without the file.
-        p.println(test.getAnswer(y));
+        //Print the final answer without the comma delimiter.
+        p.write(test.getAnswer(y) + System.lineSeparator());
         p.close();
+
     }
 
     //JADEN'S WORK IN PROGRESS METHOD FOR DISPLAYING MATCH RESULTS
