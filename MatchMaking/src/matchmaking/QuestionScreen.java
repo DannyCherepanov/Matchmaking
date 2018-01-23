@@ -5,10 +5,10 @@
  */
 package matchmaking;
 
-import java.awt.Color;
-import java.awt.Container;
+import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
+import static java.lang.Integer.parseInt;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import login.log;
@@ -20,14 +20,26 @@ import usersPKG.student;
  */
 public class QuestionScreen extends javax.swing.JFrame {
 
+    //The test student used to test the methods.
+    //THIS NEEDS TO BE CHANGED SO THE STUDENT LOGS IN AND THEIR INFORMATION GETS STORED HERE
     static student test = new student("student", "debt", 1, 1);
-    Color pink = new Color(255, 192, 203);
-    int globalCount = 0;
-    static File file = new File("questionarre.txt");
-    static File file2 = new File("answers.txt");
-    static Questionnaire q1 = new Questionnaire(file, file2, 7);
 
-    boolean[] a = new boolean[q1.q.length];
+    //The colour of the background of the program.
+    Color pink = new Color(255, 192, 203);
+
+    //The global variable that dictates which question is being answered. (Used for positions in arrays/array lists).
+    private int globalCount = 0;
+
+    //The files used in the experiment (questions and answers). 
+    private static File file = new File("questionarre.txt");
+    private static File file2 = new File("answers.txt");
+    static Questionnaire q1 = new Questionnaire(getFile(), getFile2(), 7);
+
+    //An array of booleans that checks if a question has already been answered or not.
+    private boolean[] a = new boolean[q1.q.length];
+
+    //Since this number is used a lot, I made it a variable that is a lot easier to work with.
+    int y = q1.q.length - 1;
 
     /**
      * Creates new form QuestionScreen
@@ -199,16 +211,20 @@ public class QuestionScreen extends javax.swing.JFrame {
             saveAnswer(5);
         }
 
-        //The globalCount is increased by 1, signalling the program to move to the next question for all purposes.
-        globalCount++;
+        if (getGlobalCount() == y) {
+            currentQ.setText("Click the save answer button if you're satisfied with your choices!");
+        } else {
+            //The globalCount is increased by 1, signalling the program to move to the next question for all purposes.
+            setGlobalCount(getGlobalCount() + 1);
 
-        //If the globalCount exceeds the length of the questionnaire, it returns to the maximum amount.
-        if (globalCount > q1.q.length - 1) {
-            globalCount = q1.q.length - 1;
+            //If the globalCount exceeds the length of the questionnaire, it returns to the maximum amount.
+            if (getGlobalCount() > y) {
+                setGlobalCount(y);
+            }
+
+            //The text on the GUI changes to the next question.
+            currentQ.setText(q1.q[getGlobalCount()].getQ());
         }
-
-        //The text on the GUI changes to the next question.
-        currentQ.setText(q1.q[globalCount].getQ());
     }//GEN-LAST:event_nextQActionPerformed
 
     /**
@@ -219,15 +235,15 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     private void prevQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevQActionPerformed
         //The globalCount is decreased by 1, signalling the program to move to the previous question for all purposes.
-        globalCount--;
+        setGlobalCount(getGlobalCount() - 1);
 
         //If the globalCount goes below 0, the globalCount returns to 0.
-        if (globalCount < 0) {
-            globalCount = 0;
+        if (getGlobalCount() < 0) {
+            setGlobalCount(0);
         }
 
         //The text on the GUI changes to the previous question.
-        currentQ.setText(q1.q[globalCount].getQ());
+        currentQ.setText(q1.q[getGlobalCount()].getQ());
     }//GEN-LAST:event_prevQActionPerformed
 
     /**
@@ -239,6 +255,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         //All this method does is call another method when the button is pressed.        
         saveFinal(test);
+        match();
     }//GEN-LAST:event_saveActionPerformed
 
     /**
@@ -248,15 +265,15 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     public void saveAnswer(int answer) {
         //If the question already has an answer, remove the current answer in that index.
-        if (a[globalCount] == true) {
-            test.removeAnswer(globalCount);
+        if (getA()[getGlobalCount()] == true) {
+            test.removeAnswer(getGlobalCount());
         }
 
         //Set the answer at the global index wich the answer selected.
-        test.setAnswer(globalCount, answer);
+        test.setAnswer(getGlobalCount(), answer);
 
         //Mark the question answered as true.
-        a[globalCount] = true;
+        getA()[getGlobalCount()] = true;
     }
 
     /**
@@ -269,19 +286,44 @@ public class QuestionScreen extends javax.swing.JFrame {
         //Create a new printWriter and catch any exceptions.
         PrintWriter p = null;
         try {
-            p = new PrintWriter(new FileOutputStream(file2), true);
+            p = new PrintWriter(new FileOutputStream(getFile2()), true);
         } catch (IOException ex) {
         }
 
         //Save the users information.
         p.print(test.getUn() + "," + test.getPw() + "," + test.getGender() + "," + test.getOri() + ",");
-        for (int i = 0; i < q1.q.length - 1; i++) {
+        for (int i = 0; i < y; i++) {
             //Loop through and print each answer.
             p.print(test.getAnswer(i) + ",");
         }
         //Print the final answer without the file.
-        p.println(test.getAnswer(q1.q.length - 1));
+        p.println(test.getAnswer(y));
         p.close();
+    }
+
+    //JADEN'S WORK IN PROGRESS METHOD
+    public void match() {
+        Scanner sc = null;
+        try {
+            sc = new Scanner(q1.getFile2());
+        } catch (FileNotFoundException ex) {
+        }
+
+        int z = 0;
+        while (sc.hasNextLine()) {
+            z++;
+        }
+        int count = 0;
+        student[] t = new student[z];
+        while (sc.hasNextLine()) {
+            String g = sc.nextLine();
+            String[] h = g.split(",");
+            t[count] = new student(h[0], h[1], parseInt(h[2]), parseInt(h[3]));
+        }
+        sc.close();
+        Matching m = new Matching(t);
+        student[] e = m.top10(test);
+        currentQ.setText(e[0].toString());
     }
 
     /**
@@ -294,7 +336,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
         PrintWriter p = null;
         try {
-            p = new PrintWriter(new FileWriter(file2), true);
+            p = new PrintWriter(new FileWriter(getFile2()), true);
         } catch (IOException ex) {
         }
         q1.readQuestionnaire();
@@ -346,5 +388,62 @@ public class QuestionScreen extends javax.swing.JFrame {
     private matchmaking.QuestionPanel questionPanel1;
     private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
+
+    //PRIVATE VARIABLES AND THEIR METHODS
+    /**
+     * @return the file
+     */
+    public static File getFile() {
+        return file;
+    }
+
+    /**
+     * @param aFile the file to set
+     */
+    public static void setFile(File aFile) {
+        file = aFile;
+    }
+
+    /**
+     * @return the file2
+     */
+    public static File getFile2() {
+        return file2;
+    }
+
+    /**
+     * @param aFile2 the file2 to set
+     */
+    public static void setFile2(File aFile2) {
+        file2 = aFile2;
+    }
+
+    /**
+     * @return the globalCount
+     */
+    public int getGlobalCount() {
+        return globalCount;
+    }
+
+    /**
+     * @param globalCount the globalCount to set
+     */
+    public void setGlobalCount(int globalCount) {
+        this.globalCount = globalCount;
+    }
+
+    /**
+     * @return the a
+     */
+    public boolean[] getA() {
+        return a;
+    }
+
+    /**
+     * @param a the a to set
+     */
+    public void setA(boolean[] a) {
+        this.a = a;
+    }
 
 }
