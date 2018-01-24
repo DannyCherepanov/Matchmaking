@@ -50,7 +50,7 @@ public class QuestionScreen extends javax.swing.JFrame {
     }
 
     public QuestionScreen(student s) {
-        initComponents();
+        initComponents(); 
         repaint();
         test = s;
     }
