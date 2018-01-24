@@ -106,8 +106,6 @@ public class screen extends javax.swing.JFrame {
 //            Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-
-
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -131,45 +129,37 @@ public class screen extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
-
-        
 //IF THE STUDENT'S GENDER OR ORIENTATION IS 0!! ADD IF STATEMENT DANNY
 //ALSO FUCKING PUT STUDENTS IN HERE, CHANGE THE CONSTRUCTORS TO THE STUDENT IN QUESTION
 //change the goddamn new student constructor to the student based on the username entered
-
         //DELETE THIS WHEN YOU DO WHAT YOU WERE SUPPOSED TO
-        student gettheactualstudentfromunpw = new student("b","b",0,0);
+        student gettheactualstudentfromunpw = new student("b", "b", 0, 0);
 
-
-         //send to question display screen if student has gender/ori entered
+        //send to question display screen if student has gender/ori entered
         /* Create and display the form */
         //change this to the variable for a gotten student! for now it will just be a random thing
-        if (gettheactualstudentfromunpw.getGender() != 0 && gettheactualstudentfromunpw.getOri() != 0)   {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        if (gettheactualstudentfromunpw.getGender() != 0 && gettheactualstudentfromunpw.getOri() != 0) {
 
-                new matchmaking.QuestionScreen().setVisible(true);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
 
-            }
-        });
-        this.dispose();
+                    new matchmaking.QuestionScreen().setVisible(true);
+
+                }
+            });
+            this.dispose();
         }
-        
-        
+
         //if the student is missing gender and/or orientation, send to gender/orientation screen
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ifGenderOrOriNULL(new student("b","b",0,0)).setVisible(true);
+                new ifGenderOrOriNULL(new student("b", "b", 0, 0)).setVisible(true);
             }
         });
         this.dispose();
-    
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

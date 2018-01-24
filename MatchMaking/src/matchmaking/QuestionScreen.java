@@ -22,7 +22,7 @@ public class QuestionScreen extends javax.swing.JFrame {
 
     //The test student used to test the methods.
     //THIS NEEDS TO BE CHANGED SO THE STUDENT LOGS IN AND THEIR INFORMATION GETS STORED HERE
-    static student test = new student("Answers", "Bubber", 1, 1);
+    student test;
 
     //The colour of the background of the program.
     Color pink = new Color(255, 192, 203);
@@ -31,9 +31,9 @@ public class QuestionScreen extends javax.swing.JFrame {
     private int globalCount = 0;
 
     //The files used in the experiment (questions and answers). 
-    private static File file = new File("questionarre.txt");
-    private static File file2 = new File("answers.txt");
-    static Questionnaire q1 = new Questionnaire(getFile(), getFile2(), 16);
+    public File file = new File("questionarre.txt");
+    public File file2 = new File("answers.txt");
+    Questionnaire q1 = new Questionnaire(getFile(), getFile2(), 16);
 
     //An array of booleans that checks if a question has already been answered or not.
     private boolean[] a = new boolean[q1.q.length];
@@ -381,8 +381,6 @@ public class QuestionScreen extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws FileNotFoundException {
 
-        q1.readQuestionnaire();
-
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -433,28 +431,28 @@ public class QuestionScreen extends javax.swing.JFrame {
     /**
      * @return the file
      */
-    public static File getFile() {
+    public File getFile() {
         return file;
     }
 
     /**
      * @param aFile the file to set
      */
-    public static void setFile(File aFile) {
+    public void setFile(File aFile) {
         file = aFile;
     }
 
     /**
      * @return the file2
      */
-    public static File getFile2() {
+    public File getFile2() {
         return file2;
     }
 
     /**
      * @param aFile2 the file2 to set
      */
-    public static void setFile2(File aFile2) {
+    public void setFile2(File aFile2) {
         file2 = aFile2;
     }
 

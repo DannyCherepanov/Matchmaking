@@ -23,9 +23,10 @@ public class Questionnaire {
     private File file2;
 
     public Questionnaire(File f, File g, int length) {
-        file = new File("questionarre.txt");
-        file2 = new File("answers.txt");
+        file = f;
+        file2 = g;
         q = new Question[length];
+        readQuestionnaire();
     }
 
     public void readQuestionnaire() {
