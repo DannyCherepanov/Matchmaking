@@ -98,32 +98,31 @@ public class screen extends javax.swing.JFrame {
         for (char cc : jPasswordField1.getPassword()) {
             g.concat(cc + "");
         }
-        
+
         try {
-            temp = main.login(jTextField5.getText(),g);
+            temp = main.login(jTextField5.getText(), g);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(screen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (temp.equals("S")){
-            if(main.current.getOri()==0||main.current.getGender()==0){
+
+        if (temp.equals("S")) {
+            if (main.current.getOri() == 0 || main.current.getGender() == 0) {
                 ifGenderOrOriNULL thing = new ifGenderOrOriNULL();
                 this.setVisible(false);
             } else {
                 QuestionScreen item = new QuestionScreen();
                 this.setVisible(false);
             }
-        }else if(temp.equals("A")){
+        } else if (temp.equals("A")) {
             adminScreen AA = new adminScreen();
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

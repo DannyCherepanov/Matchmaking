@@ -49,8 +49,13 @@ public class QuestionScreen extends javax.swing.JFrame {
         repaint();
     }
 
+    /**
+     * The custom constructor that takes a student. AUTHOR: JADEN
+     *
+     * @param s The student in question.
+     */
     public QuestionScreen(student s) {
-        initComponents(); 
+        initComponents();
         repaint();
         test = s;
     }
@@ -271,6 +276,7 @@ public class QuestionScreen extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(QuestionScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        match();
     }//GEN-LAST:event_saveActionPerformed
 
     /**
@@ -308,7 +314,7 @@ public class QuestionScreen extends javax.swing.JFrame {
             choice2.setText("Disagree");
             choice3.setText("Neutral");
             choice4.setText("Agree");
-            choice5.setText("StronglyAgree");
+            choice5.setText("Strongly Agree");
 
             //Sets only two buttons to be visible and changes the text to the yes/no choice.
         } else {
@@ -358,18 +364,21 @@ public class QuestionScreen extends javax.swing.JFrame {
         }
 
         int z = 0;
-        while (sc.hasNextLine()) {
-            z++;
-        }
-        int count = 0;
-        student[] t = new student[z];
+        ArrayList<student> t = new ArrayList();
         while (sc.hasNextLine()) {
             String g = sc.nextLine();
             String[] h = g.split(",");
-            t[count] = new student(h[0], h[1], parseInt(h[2]), parseInt(h[3]));
+            t.add(new student(h[0], h[1], parseInt(h[2]), parseInt(h[3])));
+            z++;
         }
         sc.close();
-        Matching m = new Matching(t);
+        student[] d = new student[t.size()];
+        t.toArray(d);
+        Matching m = new Matching(d);
+
+        //The program breaks when you get to this point.
+        //top10() method was not my job, and while the code exists and should work theoretically, it doesn't work in practice.
+        //The goal is to compare all the answers of the students (using the compareTo method we wrote for student).
         student[] e = m.top10(test);
         currentQ.setText(e[0].toString());
     }
@@ -407,7 +416,8 @@ public class QuestionScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuestionScreen().setVisible(true);
+                student s = new student("a", "b", 1, 1);
+                new QuestionScreen(s).setVisible(true);
             }
         });
     }

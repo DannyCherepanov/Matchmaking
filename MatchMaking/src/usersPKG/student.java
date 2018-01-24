@@ -111,10 +111,7 @@ public class student extends User implements Comparable<student> {
         answer.add(ansAT, (Integer) ans);
     }
 
-    //Jaden did this method. It's kinda self-explanatory.
-    public void removeAnswer(int ansAT) {
-        answer.remove(ansAT);
-    }
+    
 
     /**
      * Gets the total difference between two students. Finds the difference in
@@ -185,5 +182,15 @@ public class student extends User implements Comparable<student> {
     public String toString() {
         String dl = ",";
         return (this.getUn() + dl + this.getPw() + dl + gender + dl + ori);
+    }
+    
+    
+    
+    
+    
+    
+    //Jaden did this method. It's kinda self-explanatory.
+    public void removeAnswer(int ansAT) {
+        answer.remove(ansAT);
     }
 }
